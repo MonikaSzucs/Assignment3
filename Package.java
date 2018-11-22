@@ -7,6 +7,14 @@
  */
 public class Package
 {
+    public static final double MIN_WEIGHT = 0.0;
+    public static final double MAX_WEIGHT = 100.0;
+    public static final int MIN_PRIORITY = 1;
+    public static final int MAX_PRIORITY = 3;
+    public static final int MIN_TRACKING_CODE = 0;
+    public static final int MAX_TRACKING_CODE = 1000000000;
+    public static final double MIN_SHIPPING_PRICE = 0;
+    
     // instance variables - replace the example below with your own
     private int     trackingCode;
     private int     priority = 2;
@@ -15,16 +23,35 @@ public class Package
     private String  originCity;
     private String  destinationCity;
     private String  trackingWebpage = "http://www.trackpackage.com";
+    
+    
 
     /**
      * Constructor for objects of class Package
      */
-    public Package()
+    public Package(int trackingCode, double shippingPrice, String originCity, String destinationCity)
     {
         // initialise instance variables
-        
+        setTrackingCode(trackingCode);
+        setShippingPrice(shippingPrice);
+        setOriginCity(originCity);
+        setDestinationCity(destinationCity);
     }
     
+    /**
+     * Constructor for objects of class Package
+     */
+    public Package(int trackingCode, int priority, double shippingPrice, double weightPounds, String originCity, String destinationCity, String trackingWebpage)
+    {
+        // initialise instance variables
+        setTrackingCode(trackingCode);
+        setPriority(priority);
+        setShippingPrice(shippingPrice);
+        setWeightPounds(weightPounds);
+        setOriginCity(originCity);
+        setDestinationCity(destinationCity);
+        setTrackingWebpage(trackingWebpage);
+    }
   
     public int getTrackingCode(){
         return trackingCode;
@@ -59,7 +86,7 @@ public class Package
      */
     public void setPriority(int priority)
     {
-        if(priority==1 || priority==2 || priority==3){
+        if(priority==MIN_PRIORITY || priority==this.priority || priority==MAX_PRIORITY){
             this.priority = priority;
         }
         else{
@@ -87,7 +114,7 @@ public class Package
         }
     }
     
-    public double getWeightPounds(){
+    public double getWeight(){
         return weightPounds;
     }
     
@@ -127,7 +154,7 @@ public class Package
         }
     }
     
-    public String getDestinationCity(){
+    public String getDestCity(){
         return destinationCity;
     }
     
@@ -147,7 +174,7 @@ public class Package
         }
     }
     
-    public String getTrackingWebpage(){
+    public String getTrackingPage(){
         return trackingWebpage;
     }
     
@@ -165,5 +192,10 @@ public class Package
         else{
             throw new IllegalArgumentException("Not valid");
         }
+    }
+    
+    public String getPackageDetails(){
+        return "Package " + getTrackingCode() + " ships from " + getOriginCity() + " to " + getDestCity() + " for " + getShippingPrice() + 
+        " with priority " + getPriority() + " and weight of " + getWeight() + ". Tracking details at " + getTrackingPage();
     }
 }
