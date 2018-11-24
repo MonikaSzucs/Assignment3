@@ -3,12 +3,15 @@
  * Write a description of class Warehouse here.
  *
  * @author Monika Szucs
- * @version (a version number or a date)
+ * @version November 22, 2018
  */
 public class Warehouse
 {
     // instance variables - replace the example below with your own
+    private String[][];
+    
     private int x;
+    
 
     /**
      * Constructor for objects of class Warehouse
