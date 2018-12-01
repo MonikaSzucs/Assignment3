@@ -188,16 +188,39 @@ public class Warehouse
      *
      * @param  y  a sample parameter for a method
      * @return    the sum of x and y
+     * 
+     * when we remove we will have to use iterator
      */
-    public Package shipPackageByTrackingCode(int trackingNumber)
+    public Package shipPackagesByDestinationCity(String destinationCity)
     {
         ArrayList<Package> shippingPackage = new ArrayList<Package>();
 
         for(Package tracking : packages)
         {
-            if((packages!=null) && (trackingNumber>=0)&&(trackingNumber<=1000000000))
+            if((packages!=null) && !(destinationCity.equals("")))
             {
-                shippingPackage.remove(trackingNumber);
+                shippingPackage.remove(destinationCity);
+            }
+        }  
+        Package packaging = shippingPackage.get(0);
+        return packaging;
+    }
+    
+    /**
+     * An example of a method - replace this comment with your own
+     *
+     * @param  y  a sample parameter for a method
+     * @return    the sum of x and y
+     */
+    public Package addPackage(String destinationCity)
+    {
+        ArrayList<Package> shippingPackage = new ArrayList<Package>();
+
+        for(Package tracking : packages)
+        {
+            if((packages!=null) && !(destinationCity.equals("")))
+            {
+                shippingPackage.remove(destinationCity);
             }
         }  
         Package packaging = shippingPackage.get(0);
