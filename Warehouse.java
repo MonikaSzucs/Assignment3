@@ -201,9 +201,17 @@ public class Warehouse
             {
                 shippingPackage.remove(destinationCity);
             }
-        }  
-        Package packaging = shippingPackage.get(0);
-        return packaging;
+            
+        }
+        
+        if(shippingPackage.size()>0){
+            Package packaging = shippingPackage.get(0);
+            return packaging;
+        }
+        else {
+                throw new IllegalArgumentException("The Destination City is not valid.");
+        }
+
     }
     
     /**
