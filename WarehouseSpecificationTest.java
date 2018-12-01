@@ -110,7 +110,7 @@ public class WarehouseSpecificationTest
     @Test
     public void testShipPackageByTrackingCode()
     {
-        testMethod(warehouseClass, "shipPackageByTrackingCode", void.class, new String[]
+        testMethod(warehouseClass, "shipPackageByTrackingCode", Package.class, new String[]
         {
                "public"
         }, new String[]
@@ -124,7 +124,7 @@ public class WarehouseSpecificationTest
     @Test
     public void testShipPackagesByDestinationCity()
     {
-        testMethod(warehouseClass, "shipPackagesByDestinationCity", void.class, new String[]
+        testMethod(warehouseClass, "shipPackagesByDestinationCity", Package[].class, new String[]
         {
                "public"
         }, new String[]
