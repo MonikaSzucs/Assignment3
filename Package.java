@@ -166,13 +166,13 @@ public class Package
      */
     public void setDestinationCity(String destinationCity)
     {
-        if(destinationCity!=null){
+        if(destinationCity!=null && !destinationCity.equals("")){
             this.destinationCity = destinationCity;
-        }else if(destinationCity.equals("")){
-            throw new IllegalArgumentException("The Destination City is not set.");
+        }else if(destinationCity==null){
+            throw new IllegalArgumentException("The Destination City is not valid.");
         }
         else{
-            throw new IllegalArgumentException("The Destination City is not valid.");
+            throw new IllegalArgumentException("The Destination City is not set.");
         }
     }
     
