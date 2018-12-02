@@ -146,7 +146,7 @@ public class Package
      */
     public void setOriginCity(String originCity)
     {
-        if(originCity==null){
+        if(originCity!=null){
             this.originCity = originCity;
         }
         else{
@@ -166,11 +166,13 @@ public class Package
      */
     public void setDestinationCity(String destinationCity)
     {
-        if(destinationCity==null){
+        if(destinationCity!=null){
             this.destinationCity = destinationCity;
+        }else if(destinationCity.equals("")){
+            throw new IllegalArgumentException("The Destination City is not set.");
         }
         else{
-            throw new IllegalArgumentException("Not valid");
+            throw new IllegalArgumentException("The Destination City is not valid.");
         }
     }
     
@@ -190,7 +192,7 @@ public class Package
             this.trackingWebpage = trackingWebpage;
         }
         else{
-            throw new IllegalArgumentException("Not valid");
+            throw new IllegalArgumentException("The Destination City is not valid.");
         }
     }
     

@@ -1,5 +1,6 @@
 
 import java.util.ArrayList;
+import java.util.Iterator;
 /**
  * Write a description of class Warehouse here.
  *
@@ -190,37 +191,35 @@ public class Warehouse
      * @return    the sum of x and y
      * 
      * when we remove we will have to use iterator
+     * A method to remove a packaage from the warehouse based on:
      */
     public Package shipPackagesByDestinationCity(String destinationCity)
     {
+        if(destinationCity == null){
+            throw new IllegalArgumentException("The Destination City is not valid.");
+        }else if(destinationCity.equals("")){
+            throw new IllegalArgumentException("The Destination City is not set.");
+        }
+        
         ArrayList<Package> shippingPackage = new ArrayList<Package>();
         
-        if(destinationCity != null && !destinationCity.equals("")){
-
-        }
-        else if(destinationCity == null){
-            throw new IllegalArgumentException("The Destination City is not valid.");
-        }
-        else {
-            throw new IllegalArgumentException("The Destination City is not valid.");
+        if(packages==null)
+        {
+            throw new IllegalArgumentException("The Packages cannot be null.");
         }
         
-        for(Package tracking : packages)
-        {
-            if((packages!=null) && !(destinationCity.equals("")))
+        Iterator<Package> it = packages.iterator();
+        while(it.hasNext()) {
+            Package tracking = it.next();
+            if(tracking.getDestCity().equals(destinationCity))
             {
-                shippingPackage.remove(destinationCity);
+                packages.remove(tracking);
+                return tracking;
             }
         }
         
-        if(shippingPackage.size()>0){
-            Package packaging = shippingPackage.get(0);
-            return packaging;
-        }
-        else {
-                throw new IllegalArgumentException("The Destination City is not valid.");
-        }
-
+       
+        throw new IllegalArgumentException("The Destination City is not valid.");
     }
     
     /**
