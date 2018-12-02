@@ -228,15 +228,15 @@ public class Warehouse
      * @param  y  a sample parameter for a method
      * @return    the sum of x and y
      */
-    public Package addPackage(String destinationCity)
+    public Package addPackage(int trackingNumber)
     {
         ArrayList<Package> shippingPackage = new ArrayList<Package>();
 
         for(Package tracking : packages)
         {
-            if((packages!=null) && !(destinationCity.equals("")))
+            if((packages!=null) && (trackingNumber>=0)&&(trackingNumber<=1000000000))
             {
-                shippingPackage.remove(destinationCity);
+                shippingPackage.remove(trackingNumber);
             }
         }  
         Package packaging = shippingPackage.get(0);
