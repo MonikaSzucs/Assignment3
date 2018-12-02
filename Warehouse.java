@@ -43,7 +43,7 @@ public class Warehouse
      * @param  y  a sample parameter for a method
      * @return    the sum of x and y
      */
-    public int getTotalPackageValue()
+    public double getTotalPackageValue()
     {
         // put your code here
         return valuePackage;

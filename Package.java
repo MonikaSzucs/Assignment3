@@ -19,10 +19,10 @@ public class Package
     private int     trackingCode;
     private int     priority = 2;
     private double  shippingPrice;
-    private double  weightPounds = 0.25;
+    private double  weight = 0.25;
     private String  originCity;
-    private String  destinationCity;
-    private String  trackingWebpage = "http://www.trackpackage.com";
+    private String  destCity;
+    private String  trackingPage = "http://www.trackpackage.com";
     
     
 
@@ -68,8 +68,11 @@ public class Package
         if(trackingCode>=0 && trackingCode<=1000000000){
             this.trackingCode = trackingCode;
         }
+        else if(trackingCode>1000000000){
+            throw new IllegalArgumentException("Sorry, tracking code " + trackingCode + " is too large.");
+        }
         else{
-            throw new IllegalArgumentException("Not valid");
+            throw new IllegalArgumentException("Sorry, tracking code cannot be negative.");
         }
     }
     
@@ -90,7 +93,7 @@ public class Package
             this.priority = priority;
         }
         else{
-            throw new IllegalArgumentException("Not valid");
+            throw new IllegalArgumentException("Priority must be either 1, 2 or 3.");
         }
     }
     
@@ -110,12 +113,12 @@ public class Package
             this.shippingPrice = shippingPrice;
         }
         else{
-            throw new IllegalArgumentException("Not valid");
+            throw new IllegalArgumentException("Shipping Price cannot be negative.");
         }
     }
     
     public double getWeight(){
-        return weightPounds;
+        return weight;
     }
     
     /**
@@ -124,13 +127,13 @@ public class Package
      * @param  y  a sample parameter for a method
      * @return    the sum of x and y
      */
-    public void setWeightPounds(double weightPounds)
+    public void setWeightPounds(double weight)
     {
-        if(weightPounds>=0.0 && weightPounds<=100.0 ){
-            this.weightPounds = weightPounds;
+        if(weight>=0.0 && weight<=100.0 ){
+            this.weight = weight;
         }
         else{
-            throw new IllegalArgumentException("Not valid");
+            throw new IllegalArgumentException("Weight must be between 0.0 and 100.0lbs.");
         }
     }
     
@@ -146,16 +149,18 @@ public class Package
      */
     public void setOriginCity(String originCity)
     {
-        if(originCity!=null){
+        if(originCity!=null && !originCity.equals("")){
             this.originCity = originCity;
+        }else if(originCity==null){
+            throw new IllegalArgumentException("The Origin City is not valid.");
         }
         else{
-            throw new IllegalArgumentException("Not valid");
+            throw new IllegalArgumentException("The Origin City is not set.");
         }
     }
     
     public String getDestCity(){
-        return destinationCity;
+        return destCity;
     }
     
     /**
@@ -164,11 +169,11 @@ public class Package
      * @param  y  a sample parameter for a method
      * @return    the sum of x and y
      */
-    public void setDestinationCity(String destinationCity)
+    public void setDestinationCity(String destCity)
     {
-        if(destinationCity!=null && !destinationCity.equals("")){
-            this.destinationCity = destinationCity;
-        }else if(destinationCity==null){
+        if(destCity!=null && !destCity.equals("")){
+            this.destCity = destCity;
+        }else if(destCity==null){
             throw new IllegalArgumentException("The Destination City is not valid.");
         }
         else{
@@ -177,7 +182,7 @@ public class Package
     }
     
     public String getTrackingPage(){
-        return trackingWebpage;
+        return trackingPage;
     }
     
     /**
@@ -186,13 +191,15 @@ public class Package
      * @param  y  a sample parameter for a method
      * @return    the sum of x and y
      */
-    public void setTrackingWebpage(String trackingWebpage)
+    public void setTrackingWebpage(String trackingPage)
     {
-        if(trackingWebpage==null){
-            this.trackingWebpage = trackingWebpage;
+        if(trackingPage!=null && !trackingPage.equals("")){
+            this.trackingPage = trackingPage;
+        }else if(trackingPage==null){
+            throw new IllegalArgumentException("The Tracking Page is not valid.");
         }
         else{
-            throw new IllegalArgumentException("The Destination City is not valid.");
+            throw new IllegalArgumentException("The Tracking Page is not set.");
         }
     }
     
