@@ -194,14 +194,23 @@ public class Warehouse
     public Package shipPackagesByDestinationCity(String destinationCity)
     {
         ArrayList<Package> shippingPackage = new ArrayList<Package>();
+        
+        if(destinationCity != null && !destinationCity.equals("")){
 
+        }
+        else if(destinationCity == null){
+            throw new IllegalArgumentException("The Destination City is not valid.");
+        }
+        else {
+            throw new IllegalArgumentException("The Destination City is not valid.");
+        }
+        
         for(Package tracking : packages)
         {
             if((packages!=null) && !(destinationCity.equals("")))
             {
                 shippingPackage.remove(destinationCity);
             }
-            
         }
         
         if(shippingPackage.size()>0){
