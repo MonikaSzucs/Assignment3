@@ -56,49 +56,22 @@ public class Warehouse
      * @param  y  a sample parameter for a method
      * @return    the sum of x and y
      */
-    public Package[] getTotalPackageValue(double valuePackage)
+    public double getTotalPackageValue()
     {
-        if(valuePackage<0){
-            throw new IllegalArgumentException("Value package must be greater than 0");
-        }
-        
-        int     index = 0; 
-        int     numPackageValue = 0;
-
-        Package[] valPack;
+        double  numPackageValue = 0.0;
+        ArrayList<Double> pkg = new ArrayList<Double>();
 
         for(Package values : packages)
         {
-            if(values != null && values.getShippingPrice() == valuePackage)
-            {
-                numPackageValue++;
-            }
-        } 
-        
-        if(numPackageValue > 0){
-            valPack = new Package[numPackageValue];
-        }
-        else{
-            return null;
-        }
-        
-        for(Package values : packages)
-        {
-            if(values != null && values.getShippingPrice() == valuePackage){
-                valPack[index] = values;
-                index++;
+            if(values.getShippingPrice() >0.0){
+                pkg.add(values.getShippingPrice());
+                System.out.println(values.getShippingPrice());
             }
                 
         }
-        
-        /**
-        if(packages==null){
-            valuePackage = 0.0;
-        } else {
-            valuePackage = packages.size();
-        }
-        */
-        return valPack;
+        System.out.println(pkg);
+
+        return pkg.get(0);
     }
 
     /**
