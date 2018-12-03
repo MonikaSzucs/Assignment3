@@ -12,9 +12,11 @@ public class Warehouse
     // instance variables - replace the example below with your own
     //private String[][];
     private ArrayList<Package> packages;
-    private ArrayList<Warehouse> warehouse;
-    private int numPackages;
-    private int valuePackage;
+    
+    
+    //private ArrayList<Warehouse> warehouse;
+    //private int numPackages;
+    //private int valuePackage;
 
     /**
      * Constructor for objects of class Warehouse
@@ -34,6 +36,12 @@ public class Warehouse
     public int getNumPackages()
     {
         // put your code here
+        int numPackages;
+        if(packages==null){
+            numPackages = 0;
+        } else {
+            numPackages = packages.size();
+        }
         return numPackages;
     }
 
@@ -45,8 +53,8 @@ public class Warehouse
      */
     public double getTotalPackageValue()
     {
-        // put your code here
-        return valuePackage;
+        // to do
+        return 0;
     }
 
     /**
@@ -191,9 +199,9 @@ public class Warehouse
      * @return    the sum of x and y
      * 
      * when we remove we will have to use iterator
-     * A method to remove a packaage from the warehouse based on:
+     * A method to remove a package from the warehouse based on:
      */
-    public Package shipPackagesByDestinationCity(String destinationCity)
+    public Package[] shipPackagesByDestinationCity(String destinationCity)
     {
         if(destinationCity == null){
             throw new IllegalArgumentException("The Destination City is not valid.");
@@ -201,25 +209,33 @@ public class Warehouse
             throw new IllegalArgumentException("The Destination City is not set.");
         }
         
-        ArrayList<Package> shippingPackage = new ArrayList<Package>();
+        //ArrayList<Package> shippingPackage = new ArrayList<Package>();
         
         if(packages==null)
         {
             throw new IllegalArgumentException("The Packages cannot be null.");
         }
         
+        ArrayList<Package> sentPackages = new ArrayList<Package>();
         Iterator<Package> it = packages.iterator();
+        
         while(it.hasNext()) {
-            Package tracking = it.next();
-            if(tracking.getDestCity().equals(destinationCity))
+            Package sendablePackage = it.next();
+            
+            if(sendablePackage.getDestCity().equals(destinationCity))
             {
-                packages.remove(tracking);
-                return tracking;
+                // TODO: create a copy of the pckage somewhere else (in a list) and return the list
+                
+                sentPackages.add(sendablePackage);
+                
+                packages.remove(sendablePackage);
             }
         }
         
-       
-        throw new IllegalArgumentException("The Destination City is not valid.");
+        Package [] sent = sentPackages.toArray(new Package[sentPackages.size()]);
+        
+        return sent;
+        
     }
     
     /**
@@ -231,7 +247,7 @@ public class Warehouse
     public Package addPackage(int trackingNumber)
     {
         ArrayList<Package> shippingPackage = new ArrayList<Package>();
-
+        
         for(Package tracking : packages)
         {
             if((packages!=null) && (trackingNumber>=0)&&(trackingNumber<=1000000000))
@@ -240,7 +256,9 @@ public class Warehouse
             }
         }  
         Package packaging = shippingPackage.get(0);
-        return packaging;
+        
+        return null;
+        
     }
 }
 
