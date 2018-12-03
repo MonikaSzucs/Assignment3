@@ -103,6 +103,10 @@ public class Warehouse
      */
     public Package[] findPackagesAboveWeight(double packageAboveWeight)
     {
+        if(packageAboveWeight<0.0){
+            throw new IllegalArgumentException("Weight must be between 0.0 and 100.0lbs.");
+        }
+        
         int     index = 0; 
         int     numPackageAboveWeightPriority = 0;
 
@@ -180,7 +184,7 @@ public class Warehouse
     public Package shipPackageByTrackingCode(int trackingNumber)
     {
         ArrayList<Package> shippingPackage = new ArrayList<Package>();
-
+        
         for(Package tracking : packages)
         {
             if((packages!=null) && (trackingNumber>=0)&&(trackingNumber<=1000000000))
@@ -246,22 +250,23 @@ public class Warehouse
      */
     public Package addPackage(Package pkg)
     {
-        ArrayList<Package> addingPackages = new ArrayList<Package>();
+        
         
         if(pkg==null){
             throw new IllegalArgumentException("cannot be null");
         }
         else{
-            for(Package tracking : packages)
+            for(Package testPackage : packages)
             {
-                if(tracking == pkg)
+                if(pkg.getTrackingCode() == testPackage.getTrackingCode())
                 {
-                    addingPackages.remove(pkg);
+                    throw new IllegalArgumentException("Tracking Code is not unique.");
                 }
             }  
         }
         
-        return addingPackages;
+        packages.add(pkg);
+        return pkg;
     }
 }
 
