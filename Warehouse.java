@@ -12,11 +12,10 @@ public class Warehouse
     // instance variables - replace the example below with your own
     //private String[][];
     private ArrayList<Package> packages;
-    
-    
+
     //private ArrayList<Warehouse> warehouse;
     private int numPackages;
-    private int valuePackage;
+    private double valuePackage;
 
     /**
      * Constructor for objects of class Warehouse
@@ -30,9 +29,7 @@ public class Warehouse
         {
             packages.add(priority);
         }  
-        
-        
-        
+
     }
 
     /**
@@ -61,8 +58,14 @@ public class Warehouse
      */
     public double getTotalPackageValue()
     {
-        // to do
-        return 0;
+        double valuePackage;
+        if(packages==null){
+            valuePackage = 0.0;
+        } else {
+            valuePackage = packages.size();
+        }
+ 
+        return valuePackage;
     }
 
     /**
@@ -173,7 +176,7 @@ public class Warehouse
 
         for(Package weight : packages)
         {
-            if(weight != null && weight.getWeight()>packageBelowWeight)
+            if(weight != null && weight.getWeight()<packageBelowWeight)
             {
                 numPackageBelowWeightPriority++;
             }
@@ -188,7 +191,7 @@ public class Warehouse
 
         for(Package weight : packages)
         {
-            if(weight != null && weight.getPriority()>packageBelowWeight){
+            if(weight != null && weight.getWeight()<packageBelowWeight){
                 priorityPackage[index] = weight;
                 index++;
             }
