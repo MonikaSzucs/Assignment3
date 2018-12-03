@@ -59,19 +59,17 @@ public class Warehouse
     public double getTotalPackageValue()
     {
         double  numPackageValue = 0.0;
-        ArrayList<Double> pkg = new ArrayList<Double>();
+        //ArrayList<Double> pkg = new ArrayList<Double>();
 
         for(Package values : packages)
         {
             if(values.getShippingPrice() >0.0){
-                pkg.add(values.getShippingPrice());
-                System.out.println(values.getShippingPrice());
+                numPackageValue += values.getShippingPrice();
             }
                 
         }
-        System.out.println(pkg);
 
-        return pkg.get(0);
+        return numPackageValue;
     }
 
     /**
