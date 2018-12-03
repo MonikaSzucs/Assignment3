@@ -204,7 +204,7 @@ public class Package
     }
     
     public String getPackageDetails(){
-        return "Package " + getTrackingCode() + " ships from " + getOriginCity() + " to " + getDestCity() + " for " + getShippingPrice() + 
-        " with priority " + getPriority() + " and weight of " + getWeight() + ". Tracking details at " + getTrackingPage();
+        return "Package " + getTrackingCode() + " ships from " + getOriginCity() + " to " + getDestCity() + " for $" + getShippingPrice() + 
+        " with priority " + getPriority() + " and weight of " + getWeight() + "lbs. Tracking details at " + getTrackingPage() + ".";
     }
 }

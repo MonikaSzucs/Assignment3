@@ -25,6 +25,14 @@ public class Warehouse
     {
         // initialise instance variables
         packages = new ArrayList<Package>();
+        
+        for(Package priority : packs)
+        {
+            packages.add(priority);
+        }  
+        
+        
+        
     }
 
     /**
@@ -103,7 +111,7 @@ public class Warehouse
      */
     public Package[] findPackagesAboveWeight(double packageAboveWeight)
     {
-        if(packageAboveWeight<0.0){
+        if(packageAboveWeight<0.0 || packageAboveWeight>100.0){
             throw new IllegalArgumentException("Weight must be between 0.0 and 100.0lbs.");
         }
         
@@ -111,7 +119,8 @@ public class Warehouse
         int     numPackageAboveWeightPriority = 0;
 
         Package[] priorityPackage;
-
+        Package[] newPackage = new Package[0];
+        
         for(Package weight : packages)
         {
             if(weight != null && weight.getWeight()>packageAboveWeight)
@@ -124,14 +133,16 @@ public class Warehouse
             priorityPackage = new Package[numPackageAboveWeightPriority];
         }
         else{
-            return null;
+            return newPackage;
         }
 
         for(Package weight : packages)
         {
-            if(weight != null && weight.getPriority()>packageAboveWeight)
+            if(weight != null && weight.getWeight()>packageAboveWeight){
                 priorityPackage[index] = weight;
-            index++;
+                index++;
+            }
+                
         }
 
         return priorityPackage;
