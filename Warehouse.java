@@ -15,8 +15,8 @@ public class Warehouse
     
     
     //private ArrayList<Warehouse> warehouse;
-    //private int numPackages;
-    //private int valuePackage;
+    private int numPackages;
+    private int valuePackage;
 
     /**
      * Constructor for objects of class Warehouse
@@ -246,19 +246,22 @@ public class Warehouse
      */
     public Package addPackage(Package pkg)
     {
-        ArrayList<Package> shippingPackage = new ArrayList<Package>();
-        /**
-        for(Package tracking : packages)
-        {
-            if((packages!=null) && (trackingNumber>=0)&&(trackingNumber<=1000000000))
-            {
-                shippingPackage.remove(trackingNumber);
-            }
-        }  
-        Package packaging = shippingPackage.get(0);
-        */
-        return null;
+        ArrayList<Package> addingPackages = new ArrayList<Package>();
         
+        if(pkg==null){
+            throw new IllegalArgumentException("cannot be null");
+        }
+        else{
+            for(Package tracking : packages)
+            {
+                if(tracking == pkg)
+                {
+                    addingPackages.remove(pkg);
+                }
+            }  
+        }
+        
+        return addingPackages;
     }
 }
 
