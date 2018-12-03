@@ -56,16 +56,49 @@ public class Warehouse
      * @param  y  a sample parameter for a method
      * @return    the sum of x and y
      */
-    public double getTotalPackageValue()
+    public Package[] getTotalPackageValue(double valuePackage)
     {
-        double valuePackage;
+        if(valuePackage<0){
+            throw new IllegalArgumentException("Value package must be greater than 0");
+        }
+        
+        int     index = 0; 
+        int     numPackageValue = 0;
+
+        Package[] valPack;
+
+        for(Package values : packages)
+        {
+            if(values != null && values.getShippingPrice() == valuePackage)
+            {
+                numPackageValue++;
+            }
+        } 
+        
+        if(numPackageValue > 0){
+            valPack = new Package[numPackageValue];
+        }
+        else{
+            return null;
+        }
+        
+        for(Package values : packages)
+        {
+            if(values != null && values.getShippingPrice() == valuePackage){
+                valPack[index] = values;
+                index++;
+            }
+                
+        }
+        
+        /**
         if(packages==null){
             valuePackage = 0.0;
         } else {
             valuePackage = packages.size();
         }
- 
-        return valuePackage;
+        */
+        return valPack;
     }
 
     /**
@@ -104,9 +137,11 @@ public class Warehouse
 
         for(Package priority : packages)
         {
-            if(priority != null && priority.getPriority() == packagePriority)
+            if(priority != null && priority.getPriority() == packagePriority){
                 priorityPackage[index] = priority;
-            index++;
+                index++;
+            }
+                
         }
 
         return priorityPackage;
@@ -209,8 +244,12 @@ public class Warehouse
      */
     public Package shipPackageByTrackingCode(int trackingNumber)
     {
-        ArrayList<Package> shippingPackage = new ArrayList<Package>();
+        if(trackingNumber<=0){
+            throw new IllegalArgumentException("Sorry, tracking code " +trackingNumber + " cannot be negative.");
+        }
         
+        ArrayList<Package> shippingPackage = new ArrayList<Package>();
+
         for(Package tracking : packages)
         {
             if((packages!=null) && (trackingNumber>=0)&&(trackingNumber<=1000000000))
