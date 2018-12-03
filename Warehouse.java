@@ -73,6 +73,12 @@ public class Warehouse
      */
     public Package[] findPackagesByPriority(int packagePriority)
     {
+        if(packagePriority<1){
+            throw new IllegalArgumentException("Priority must be either 1, 2 or 3.");
+        } else if(packagePriority>3){
+            throw new IllegalArgumentException("Priority must be either 1, 2 or 3.");
+        }
+        
         int     index = 0; 
         int     numPriority = 0;
 
@@ -156,6 +162,10 @@ public class Warehouse
      */
     public Package[] findPackagesBelowWeight(double packageBelowWeight)
     {
+        if(packageBelowWeight<0.0 || packageBelowWeight>100.0){
+            throw new IllegalArgumentException("Weight must be between 0.0 and 100.0lbs.");
+        }
+        
         int     index = 0; 
         int     numPackageBelowWeightPriority = 0;
 
@@ -178,9 +188,11 @@ public class Warehouse
 
         for(Package weight : packages)
         {
-            if(weight != null && weight.getPriority()>packageBelowWeight)
+            if(weight != null && weight.getPriority()>packageBelowWeight){
                 priorityPackage[index] = weight;
-            index++;
+                index++;
+            }
+            
         }
 
         return priorityPackage;
