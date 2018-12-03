@@ -244,10 +244,10 @@ public class Warehouse
      * @param  y  a sample parameter for a method
      * @return    the sum of x and y
      */
-    public Package addPackage(int trackingNumber)
+    public Package addPackage(Package pkg)
     {
         ArrayList<Package> shippingPackage = new ArrayList<Package>();
-        
+        /**
         for(Package tracking : packages)
         {
             if((packages!=null) && (trackingNumber>=0)&&(trackingNumber<=1000000000))
@@ -256,7 +256,7 @@ public class Warehouse
             }
         }  
         Package packaging = shippingPackage.get(0);
-        
+        */
         return null;
         
     }
