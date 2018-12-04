@@ -25,8 +25,22 @@ public class Warehouse
         // initialise instance variables
         packages = new ArrayList<Package>();
         
+        if(packs == null){
+            throw new IllegalArgumentException("List of Packages cannot be null.");
+        }
+        
         for(Package priority : packs)
         {
+            if(priority == null){
+            throw new IllegalArgumentException("List of Packages cannot be null.");
+        }
+            
+            for(Package prior : packages){
+                if(priority.getTrackingCode() == prior.getTrackingCode())
+                {
+                    throw new IllegalArgumentException("Duplicate Tracking Code found: " + priority.getTrackingCode());
+                }
+            }
             packages.add(priority);
         }  
 
@@ -215,42 +229,25 @@ public class Warehouse
      */
     public Package shipPackageByTrackingCode(int trackingNumber)
     {
-        if(trackingNumber<=0){
+        if(trackingNumber>=1000000000){
+            throw new IllegalArgumentException("Sorry, tracking code " + trackingNumber + " is too large.");
+        } else if(trackingNumber<=0){
             throw new IllegalArgumentException("Sorry, tracking code " + trackingNumber + " cannot be negative.");
         }
-        
-        ArrayList<Package> shippingPackage = new ArrayList<Package>();
 
-        for(Package tracking : packages)
-        {
-            if( (trackingNumber>=0)&&(trackingNumber<=1000000000))
-            {
-                shippingPackage.remove(trackingNumber);
-                System.out.println(shippingPackage);
-            }
-            else{
-                throw new IllegalArgumentException("Sorry, tracking code is not valid.");
-            }
-        }  
-        
-        ArrayList<Package> sentPackages = new ArrayList<Package>();
         Iterator<Package> it = packages.iterator();
         
         while(it.hasNext()) {
             Package sendablePackage = it.next();
-            
-            if(trackingNumber = packages.getTrackingCode())
+
+            if(trackingNumber == sendablePackage.getTrackingCode())
             {
-                // TODO: create a copy of the pckage somewhere else (in a list) and return the list
-                
-                sentPackages.add(sendablePackage);
-                
-                packages.remove(sendablePackage);
+                it.remove();
+                return sendablePackage;
             }
         }
         
-        Package packaging = shippingPackage.get(0);
-        return packaging;
+        return null;
     }
     
     /**
@@ -282,19 +279,13 @@ public class Warehouse
         
         ArrayList<Package> sentPackages = new ArrayList<Package>();
         Iterator<Package> it = packages.iterator();
-        
-        
-        
+
         while(it.hasNext()) {
             Package sendablePackage = it.next();
-            
             if(sendablePackage.getDestCity().equals(destinationCity))
             {
-                // TODO: create a copy of the pckage somewhere else (in a list) and return the list
-                
                 sentPackages.add(sendablePackage);
-                
-                packages.remove(sendablePackage);
+                it.remove();
             }
         }
         
