@@ -9,11 +9,9 @@ import java.util.Iterator;
  */
 public class Warehouse
 {
-    // instance variables - replace the example below with your own
-    //private String[][];
+    // instance variables 
     private ArrayList<Package> packages;
-
-    //private ArrayList<Warehouse> warehouse;
+    
     private int numPackages;
     private double valuePackage;
 
@@ -95,10 +93,10 @@ public class Warehouse
      */
     public Package[] findPackagesByPriority(int packagePriority)
     {
-        if(packagePriority<1){
-            throw new IllegalArgumentException("Priority must be either 1, 2 or 3.");
-        } else if(packagePriority>3){
-            throw new IllegalArgumentException("Priority must be either 1, 2 or 3.");
+        if(packagePriority<Package.MIN_PRIORITY){
+            throw new IllegalArgumentException("Priority must be either " + Package.MIN_PRIORITY + ", " + Package.MID_PRIORITY + " or " + Package.MAX_PRIORITY +".");
+        } else if(packagePriority>Package.MAX_PRIORITY){
+            throw new IllegalArgumentException("Priority must be either " + Package.MIN_PRIORITY + ", " + Package.MID_PRIORITY + " or " + Package.MAX_PRIORITY +".");
         }
         
         int     index = 0; 
@@ -136,13 +134,15 @@ public class Warehouse
     /**
      * Method
      *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
+     * @param   packageAboveWeight is checking if the weight is above a certain number.
+     * @return  newPackage the new packages in the array.
+     * @return  priorityPackage is the packages that have the most priority.
+     * 
      */
     public Package[] findPackagesAboveWeight(double packageAboveWeight)
     {
-        if(packageAboveWeight<0.0 || packageAboveWeight>100.0){
-            throw new IllegalArgumentException("Weight must be between 0.0 and 100.0lbs.");
+        if(packageAboveWeight<Package.MIN_WEIGHT || packageAboveWeight>Package.MAX_WEIGHT){
+            throw new IllegalArgumentException("Weight must be between " + Package.MIN_WEIGHT +" and " + Package.MAX_WEIGHT + "lbs.");
         }
         
         int     index = 0; 
@@ -179,15 +179,17 @@ public class Warehouse
     } 
     
     /**
-     * An example of a method - replace this comment with your own
+     * Method
      *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
+     * @param   packageBelowWeight is checking if the weight is above a certain number.
+     * @return  null if the number of packages is below the weight priority.
+     * @return  priorityPackage is the packages that have the most priority.
+     * 
      */
     public Package[] findPackagesBelowWeight(double packageBelowWeight)
     {
-        if(packageBelowWeight<0.0 || packageBelowWeight>100.0){
-            throw new IllegalArgumentException("Weight must be between 0.0 and 100.0lbs.");
+        if(packageBelowWeight<Package.MIN_WEIGHT || packageBelowWeight>Package.MAX_WEIGHT){
+            throw new IllegalArgumentException("Weight must be between " + Package.MIN_WEIGHT +" and " + Package.MAX_WEIGHT + "lbs.");
         }
         
         int     index = 0; 
@@ -223,16 +225,18 @@ public class Warehouse
     } 
     
     /**
-     * An example of a method - replace this comment with your own
+     * Method
      *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
+     * @param   packageBelowWeight is checking if the weight is above a certain number.
+     * @return  null if no tracking code was found that matches.
+     * @return  sendablePackage if the trackingNumber matches the TrackingCode saved in packages.
+     * 
      */
     public Package shipPackageByTrackingCode(int trackingNumber)
     {
-        if(trackingNumber>=1000000000){
+        if(trackingNumber>=Package.MAX_TRACKING_CODE){
             throw new IllegalArgumentException("Sorry, tracking code " + trackingNumber + " is too large.");
-        } else if(trackingNumber<=0){
+        } else if(trackingNumber<=Package.MIN_TRACKING_CODE){
             throw new IllegalArgumentException("Sorry, tracking code " + trackingNumber + " cannot be negative.");
         }
 
@@ -252,13 +256,11 @@ public class Warehouse
     }
     
     /**
-     * An example of a method - replace this comment with your own
+     * Method
      *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
+     * @param   destinationCity is the destination city.
+     * @return  sent which is the packages that has been sent.
      * 
-     * when we remove we will have to use iterator
-     * A method to remove a package from the warehouse based on:
      */
     public Package[] shipPackagesByDestinationCity(String destinationCity)
     {
@@ -267,11 +269,6 @@ public class Warehouse
         }else if(destinationCity.equals("")){
             throw new IllegalArgumentException("The Destination City is not set.");
         }
-        else{
-        
-        }
-        
-        //ArrayList<Package> shippingPackage = new ArrayList<Package>();
         
         if(packages==null)
         {
@@ -297,10 +294,11 @@ public class Warehouse
     }
     
     /**
-     * An example of a method - replace this comment with your own
+     * Method
      *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
+     * @param   pkg is the value entered in by the user to search through Package.
+     * @return  will return nothing.
+     * 
      */
     public void addPackage(Package pkg)
     {

@@ -10,6 +10,7 @@ public class Package
     public static final double MIN_WEIGHT = 0.0;
     public static final double MAX_WEIGHT = 100.0;
     public static final int MIN_PRIORITY = 1;
+    public static final int MID_PRIORITY = 2;
     public static final int MAX_PRIORITY = 3;
     public static final int MIN_TRACKING_CODE = 0;
     public static final int MAX_TRACKING_CODE = 1000000000;
