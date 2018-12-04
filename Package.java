@@ -16,7 +16,7 @@ public class Package
     public static final double MIN_SHIPPING_PRICE = 0;
     
     // instance variables - replace the example below with your own
-    private int     trackingCode;
+    private final   int     trackingCode;
     private int     priority = 2;
     private double  shippingPrice;
     private double  weight = 0.25;
@@ -32,7 +32,15 @@ public class Package
     public Package(int trackingCode, double shippingPrice, String originCity, String destinationCity)
     {
         // initialise instance variables
-        setTrackingCode(trackingCode);
+        if(trackingCode>=MIN_TRACKING_CODE && trackingCode<=MAX_TRACKING_CODE){
+            this.trackingCode = trackingCode;
+        }else if(trackingCode>1000000000){
+            throw new IllegalArgumentException("Sorry, tracking code " + trackingCode + " is too large.");
+        }
+        else {
+            throw new IllegalArgumentException("Sorry, tracking code cannot be negative.");
+        }
+
         setShippingPrice(shippingPrice);
         setOriginCity(originCity);
         setDestinationCity(destinationCity);
@@ -44,7 +52,15 @@ public class Package
     public Package(int trackingCode, int priority, double shippingPrice, double weightPounds, String originCity, String destinationCity, String trackingWebpage)
     {
         // initialise instance variables
-        setTrackingCode(trackingCode);
+        if(trackingCode>=0 && trackingCode<=1000000000){
+            this.trackingCode = trackingCode;
+        }else if(trackingCode>1000000000){
+            throw new IllegalArgumentException("Sorry, tracking code " + trackingCode + " is too large.");
+        }
+        else{
+            throw new IllegalArgumentException("Sorry, tracking code cannot be negative.");
+        }
+
         setPriority(priority);
         setShippingPrice(shippingPrice);
         setWeightPounds(weightPounds);
@@ -56,27 +72,7 @@ public class Package
     public int getTrackingCode(){
         return trackingCode;
     }
-    
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
-    public void setTrackingCode(int trackingCode)
-    {
-        if(trackingCode>=0 && trackingCode<=1000000000){
-            this.trackingCode = trackingCode;
-        }
-        else if(trackingCode>1000000000){
-            throw new IllegalArgumentException("Sorry, tracking code " + trackingCode + " is too large.");
-        }
-        else{
-            throw new IllegalArgumentException("Sorry, tracking code cannot be negative.");
-        }
-    }
-    
-    
+  
     public int getPriority(){
         return priority;
     }

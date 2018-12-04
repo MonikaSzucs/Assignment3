@@ -216,18 +216,39 @@ public class Warehouse
     public Package shipPackageByTrackingCode(int trackingNumber)
     {
         if(trackingNumber<=0){
-            throw new IllegalArgumentException("Sorry, tracking code " +trackingNumber + " cannot be negative.");
+            throw new IllegalArgumentException("Sorry, tracking code " + trackingNumber + " cannot be negative.");
         }
         
         ArrayList<Package> shippingPackage = new ArrayList<Package>();
 
         for(Package tracking : packages)
         {
-            if((packages!=null) && (trackingNumber>=0)&&(trackingNumber<=1000000000))
+            if( (trackingNumber>=0)&&(trackingNumber<=1000000000))
             {
                 shippingPackage.remove(trackingNumber);
+                System.out.println(shippingPackage);
+            }
+            else{
+                throw new IllegalArgumentException("Sorry, tracking code is not valid.");
             }
         }  
+        
+        ArrayList<Package> sentPackages = new ArrayList<Package>();
+        Iterator<Package> it = packages.iterator();
+        
+        while(it.hasNext()) {
+            Package sendablePackage = it.next();
+            
+            if(trackingNumber = packages.getTrackingCode())
+            {
+                // TODO: create a copy of the pckage somewhere else (in a list) and return the list
+                
+                sentPackages.add(sendablePackage);
+                
+                packages.remove(sendablePackage);
+            }
+        }
+        
         Package packaging = shippingPackage.get(0);
         return packaging;
     }
@@ -248,6 +269,9 @@ public class Warehouse
         }else if(destinationCity.equals("")){
             throw new IllegalArgumentException("The Destination City is not set.");
         }
+        else{
+        
+        }
         
         //ArrayList<Package> shippingPackage = new ArrayList<Package>();
         
@@ -258,6 +282,8 @@ public class Warehouse
         
         ArrayList<Package> sentPackages = new ArrayList<Package>();
         Iterator<Package> it = packages.iterator();
+        
+        
         
         while(it.hasNext()) {
             Package sendablePackage = it.next();
@@ -284,7 +310,7 @@ public class Warehouse
      * @param  y  a sample parameter for a method
      * @return    the sum of x and y
      */
-    public Package addPackage(Package pkg)
+    public void addPackage(Package pkg)
     {
         
         
@@ -302,7 +328,7 @@ public class Warehouse
         }
         
         packages.add(pkg);
-        return pkg;
+        return;
     }
 }
 
