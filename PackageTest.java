@@ -5,7 +5,7 @@ import static org.junit.Assert.assertEquals;
 
 public class PackageTest
 {
-    private static Grader grader = new Grader("PackageTest", 48);
+    private static Grader grader = new Grader("PackageTest", 42);
     
     @AfterClass
     public static void grade()

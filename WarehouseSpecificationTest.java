@@ -5,7 +5,7 @@ import org.junit.Test;
 public class WarehouseSpecificationTest
     extends SpecificationTest
 {
-    private static Grader grader = new Grader("WarehouseSpecification", 10);
+    private static Grader grader = new Grader("WarehouseSpecification", 11);
     private static Class<?> warehouseClass;
     
     static

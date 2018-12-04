@@ -6,7 +6,7 @@ import static org.junit.Assert.fail;
 
 public class PackageConstructorTest
 {
-    private static Grader grader = new Grader("PackageConstructorTest", 31);
+    private static Grader grader = new Grader("PackageConstructorTest", 19);
     
     @AfterClass
     public static void grade()

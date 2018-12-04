@@ -19,6 +19,9 @@ public class Warehouse
 
     /**
      * Constructor for objects of class Warehouse
+     * 
+     * Contains an array of Packages
+     * 
      */
     public Warehouse(Package[] packs)
     {
@@ -47,10 +50,10 @@ public class Warehouse
     }
 
     /**
-     * An example of a method - replace this comment with your own
+     * Getting the number of Packages
      *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
+     *@return numPackages returns the number of packages
+     *
      */
     public int getNumPackages()
     {
@@ -65,10 +68,8 @@ public class Warehouse
     }
 
     /**
-     * An example of a method - replace this comment with your own
      *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
+     * @return numPackageValue is the total package value.
      */
     public double getTotalPackageValue()
     {
@@ -87,10 +88,10 @@ public class Warehouse
     }
 
     /**
-     * An example of a method - replace this comment with your own
      *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
+     * @param  packagePriority is the integer of the package priority.
+     * @return packagePriority will return a null or the priority of the package.
+     * 
      */
     public Package[] findPackagesByPriority(int packagePriority)
     {
@@ -133,7 +134,7 @@ public class Warehouse
     }  
     
     /**
-     * An example of a method - replace this comment with your own
+     * Method
      *
      * @param  y  a sample parameter for a method
      * @return    the sum of x and y

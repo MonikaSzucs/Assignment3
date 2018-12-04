@@ -10,7 +10,7 @@ import static org.junit.Assert.fail;
 
 public class WarehouseTest
 {
-    private static Grader grader = new Grader("WarehouseTest", 45);
+    private static Grader grader = new Grader("WarehouseTest", 41);
     
     @AfterClass
     public static void grade()

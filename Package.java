@@ -28,13 +28,19 @@ public class Package
 
     /**
      * Constructor for objects of class Package
+     * 
+     * @param trackingCode will contain the tracking code.
+     * @param shippingPrice will contain the shipping price.
+     * @param originCity will contain the name of the origin city.
+     * @param destinationCity will contain the name of the destination city.
+     * 
      */
     public Package(int trackingCode, double shippingPrice, String originCity, String destinationCity)
     {
         // initialise instance variables
         if(trackingCode>=MIN_TRACKING_CODE && trackingCode<=MAX_TRACKING_CODE){
             this.trackingCode = trackingCode;
-        }else if(trackingCode>1000000000){
+        }else if(trackingCode>MAX_TRACKING_CODE){
             throw new IllegalArgumentException("Sorry, tracking code " + trackingCode + " is too large.");
         }
         else {
@@ -47,14 +53,23 @@ public class Package
     }
     
     /**
-     * Constructor for objects of class Package
+     * Constructor for objects of class Package.
+     * 
+     * @param trackingCode will contain the tracking code.
+     * @param priority will contain the number priority 1, 2 or 3.
+     * @param shippingPrice will contain the shipping price.
+     * @param weightPounds will contain the weight in pounds.
+     * @param originCity will contain the name of the origin city.
+     * @param destinationCity will contain the name of the destination city.
+     * @param trackingWebPage will contain the link to the tracking web page.
+     * 
      */
     public Package(int trackingCode, int priority, double shippingPrice, double weightPounds, String originCity, String destinationCity, String trackingWebpage)
     {
         // initialise instance variables
-        if(trackingCode>=0 && trackingCode<=1000000000){
+        if(trackingCode>=MIN_TRACKING_CODE && trackingCode<=MAX_TRACKING_CODE){
             this.trackingCode = trackingCode;
-        }else if(trackingCode>1000000000){
+        }else if(trackingCode>MAX_TRACKING_CODE){
             throw new IllegalArgumentException("Sorry, tracking code " + trackingCode + " is too large.");
         }
         else{
@@ -68,20 +83,26 @@ public class Package
         setDestinationCity(destinationCity);
         setTrackingWebpage(trackingWebpage);
     }
-  
+    
+    /**
+     * Accessor
+     * @return the tracking code.
+     */
     public int getTrackingCode(){
         return trackingCode;
     }
-  
+    
+    /**
+     * Accessor
+     * @return the priority.
+     */
     public int getPriority(){
         return priority;
     }
     
     /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
+     * Mutator Method
+     * @param  priority the proiority of the package
      */
     public void setPriority(int priority)
     {
@@ -89,23 +110,25 @@ public class Package
             this.priority = priority;
         }
         else{
-            throw new IllegalArgumentException("Priority must be either 1, 2 or 3.");
+            throw new IllegalArgumentException("Priority must be either " + MIN_PRIORITY + ", " + this.priority + " or " + MAX_PRIORITY + ".");
         }
     }
     
+    /**
+     * Accessor
+     * @return the shipping price.
+     */
     public double getShippingPrice(){
         return shippingPrice;
     }
     
     /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
+     * Mutator Method
+     * @param  shippingPrice is the price for shipping.
      */
     public void setShippingPrice(double shippingPrice)
     {
-        if(shippingPrice>=0){
+        if(shippingPrice>=MIN_SHIPPING_PRICE){
             this.shippingPrice = shippingPrice;
         }
         else{
@@ -113,35 +136,39 @@ public class Package
         }
     }
     
+    /**
+     * Accessor
+     * @return the weight of the package.
+     */
     public double getWeight(){
         return weight;
     }
     
     /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
+     * Mutator Method
+     * @param  weight is the weight of the package in pounds.
      */
     public void setWeightPounds(double weight)
     {
-        if(weight>=0.0 && weight<=100.0 ){
+        if(weight>=MIN_WEIGHT && weight<=MAX_WEIGHT ){
             this.weight = weight;
         }
         else{
-            throw new IllegalArgumentException("Weight must be between 0.0 and 100.0lbs.");
+            throw new IllegalArgumentException("Weight must be between " + MIN_WEIGHT + " and " + MAX_WEIGHT + "lbs.");
         }
     }
     
+    /**
+     * Accessor
+     * @return the origin city.
+     */
     public String getOriginCity(){
         return originCity;
     }
     
     /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
+     * Mutator Method
+     * @param  originCity is the origin of the city.
      */
     public void setOriginCity(String originCity)
     {
@@ -155,15 +182,17 @@ public class Package
         }
     }
     
+    /**
+     * Accessor
+     * @return the origin city.
+     */
     public String getDestCity(){
         return destCity;
     }
     
     /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
+     * Mutator Method
+     * @param  destCity is the destination city.
      */
     public void setDestinationCity(String destCity)
     {
@@ -177,15 +206,17 @@ public class Package
         }
     }
     
+    /**
+     * Accessor
+     * @return the tracking page.
+     */
     public String getTrackingPage(){
         return trackingPage;
     }
     
     /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
+     * Mutator Method
+     * @param  destCity is the destination city.
      */
     public void setTrackingWebpage(String trackingPage)
     {
@@ -199,6 +230,12 @@ public class Package
         }
     }
     
+    /**
+     * Mutator Method
+     * 
+     * returns a sentence containing all the package details.
+     * 
+     */
     public String getPackageDetails(){
         return "Package " + getTrackingCode() + " ships from " + getOriginCity() + " to " + getDestCity() + " for $" + getShippingPrice() + 
         " with priority " + getPriority() + " and weight of " + getWeight() + "lbs. Tracking details at " + getTrackingPage() + ".";
